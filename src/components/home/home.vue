@@ -13,7 +13,7 @@
                     </el-col>
                     <el-col :span="2">
                         <div class="grid-content bg-purple" style="line-height: 60px;">
-                            <a class="logout" href="#">退出</a>
+                            <a class="logout" href="#" @click="logout">退出</a>
                         </div>
                     </el-col>
                 </el-row>
@@ -22,6 +22,7 @@
                 <el-aside class="aside" width="200px">
                     <!--侧栏：左侧-->
                     <el-menu
+                            :router="true"
                             default-active="2"
                             class="el-menu-vertical-demo"
                             @open="handleOpen"
@@ -32,7 +33,7 @@
                                 <i class="el-icon-menu"></i>
                                 <span>用户管理</span>
                             </template>
-                            <el-menu-item index="1-1">
+                            <el-menu-item index="user">
                                 <i class="el-icon-menu"></i>
                                 用户列表
                             </el-menu-item>
@@ -58,6 +59,7 @@
                 <el-main class="main">
 
                     <!--主要内容展示：右侧-->
+                    <router-view></router-view>
 
                 </el-main>
             </el-container>
@@ -84,6 +86,12 @@
             },
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            logout(){//退出登录
+
+                localStorage.clear();
+                this.$message({message: '退出成功',type: 'success'});
+                this.$router.push({name:'login'})
             }
         }
     }

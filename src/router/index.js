@@ -5,6 +5,7 @@ import Router from 'vue-router'
 //使用@它会自动找到src下的文件夹,这webpack的封装功能
 import Login from "../components/login/login.vue";
 import Home from "../components/home/home.vue";
+import User from "../components/user/userList.vue";
 
 Vue.use(Router)
 
@@ -22,7 +23,14 @@ export default new Router({
         {
             path: '/home',
             name: 'home',
-            component: Home
+            component: Home,
+            children:[
+                {
+                    path: '/user',
+                    name: 'user',
+                    component: User
+                }
+            ]
         },
     ]
 })
